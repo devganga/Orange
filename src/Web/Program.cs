@@ -1,4 +1,5 @@
 using Orange.Infrastructure.Data;
+using Blusky.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddKeyVaultIfConfigured(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebServices();
+
+builder.Host.UseBlusky();
 
 var app = builder.Build();
 

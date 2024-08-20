@@ -1,11 +1,9 @@
-﻿using Azure.Identity;
+﻿using Microsoft.AspNetCore.Mvc;
+using NSwag;
+using NSwag.Generation.Processors.Security;
 using Orange.Application.Common.Interfaces;
 using Orange.Infrastructure.Data;
 using Orange.Web.Services;
-using Microsoft.AspNetCore.Mvc;
-
-using NSwag;
-using NSwag.Generation.Processors.Security;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -54,6 +52,8 @@ public static class DependencyInjection
     public static IServiceCollection AddKeyVaultIfConfigured(this IServiceCollection services, ConfigurationManager configuration)
     {
         var keyVaultUri = configuration["KeyVaultUri"];
+        //configuration.AddUserSecrets("4a4999f8-10de-4d25-b26b-c0722060a159");
+        configuration.AddUserSecrets<Program>();
         //if (!string.IsNullOrWhiteSpace(keyVaultUri))
         //{
         //    configuration.AddAzureKeyVault(
