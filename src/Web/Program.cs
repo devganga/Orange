@@ -10,7 +10,11 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebServices();
 
+//use Blusky Services
 builder.Host.UseBlusky();
+
+//Register user secrets 
+builder.Configuration.AddUserSecrets<Program>();
 
 var app = builder.Build();
 
